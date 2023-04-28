@@ -2,7 +2,6 @@ package com.sqa.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sqa.models.dtos.NguoinopthueDTO;
 import com.sqa.models.dtos.RegisterModel;
 import com.sqa.models.entities.Nguoinopthue;
 import com.sqa.services.UserService;
@@ -11,17 +10,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @CrossOrigin("*")
-public class RegisterController {
+public class UserRegisterController {
     @Autowired
     private UserService userService;
     @GetMapping("/register")
     public String RegisterStep0(Model model){
         model.addAttribute("registerModel", new RegisterModel());
-        return "./HomeViews/register";
+        return "./User/register";
     }
     @GetMapping("/api/getUserByMST")
     public ResponseEntity<String> getUserByMST(@RequestParam("masothue") String masothue){

@@ -1,9 +1,9 @@
 package com.sqa.controller;
 
-import java.util.Optional;
-
-import jakarta.servlet.http.HttpServletRequest;
-
+import com.sqa.models.entities.Nguoinopthue;
+import com.sqa.services.UserService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,15 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.sqa.models.entities.Nguoinopthue;
-import com.sqa.services.UserService;
-
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletResponse;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/")
-public class LoginController {
+public class UserLoginController {
 
 	@Autowired
 	private UserService userService;
@@ -33,7 +29,7 @@ public class LoginController {
 		if (message.isPresent()) {
 			model.addAttribute("message", message.get());// phương thức get dùng để lấy dữ liệu kiểu Optional
 		}
-		return "./HomeViews/login";
+		return "./User/user_login";
 	}
 
 	@GetMapping("/logoutProcess")
@@ -56,7 +52,7 @@ public class LoginController {
 		} else {
 			model.addAttribute("message", "tên đăng nhập hoặc mật khẩu không đúng!");
 			model.addAttribute("user", user);
-			return "./HomeViews/login";
+			return "./User/user_login";
 		}
 		return "redirect:/home";
 	}
