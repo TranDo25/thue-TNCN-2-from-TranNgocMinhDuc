@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Title</title>
+<!-- Required meta tags -->
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+<!-- Bootstrap CSS v5.2.1 -->
+<link th:replace="fragments::link_bootstrap" />
+</head>
+
+<body>
+	<div th:replace="fragments::link_css"></div>
+	<div th:replace="fragments::navbar"></div>
+	<div th:replace="fragments::sidebar"></div>
+
+	<main th:object="${res}">
+		<div>
+			<h1 class="d-flex justify-content-center mt-3 mb-3 p-3">BÁO CÁO
+				TỔNG HỢP SỐ THUẾ ĐÃ NỘP</h1>
+
+			<div class="card d-flex justify-content-center">
+				<div class="container" style="margin-top: 30px">
+					<div class="row">
+						<div class="col-sm">
+							<strong>Họ tên người nộp thuế:</strong>
+						</div>
+
+						<div class="col-sm" style="color: black">
+							<p th:text="*{nntDTO.tencanhan}"></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm">
+							<strong>Mã số thuế:</strong>
+						</div>
+
+						<div class="col-sm" style="color: black">
+							<p th:text="*{nntDTO.masothue}"></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm">
+							<strong>Địa chỉ liên lạc:</strong>
+						</div>
+
+						<div class="col-sm">
+							<p th:text="*{nntDTO.diachilienlac}"></p>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm">
+							<strong>Thời gian xuất báo cáo:</strong>
+						</div>
+
+						<div class="col-sm">
+							<p id="thoi_gian_hien_tai"></p>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm">
+							<strong>Tổng số tiền phải đóng:</strong>
+						</div>
+
+						<div class="col-sm">
+							<p th:text="${tong_tien_phai_dong}+' VNĐ'"></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm">
+							<strong>Tổng số tiền đã đóng:</strong>
+						</div>
+
+						<div class="col-sm">
+							<p th:text="${tong_tien_da_dong}+' VNĐ'"></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm">
+							<strong>Số tiền còn nợ thuế:</strong>
+
+						</div>
+						<div class="col-sm">
+							<p th:text="${tong_tien_con_no}+' VNĐ'"></p>
+						</div>
+
+					</div>
+
+					<h6 style="padding: inherit">DANH CÁCH CÁC LẦN ĐÓNG THUẾ:</h6>
+
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th scope="col">#</th>
+
+								<th scope="col">Ngày đóng thuế</th>
+
+								<th scope="col">Số tiền đóng</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr th:each="row,rowStat : ${res.dsHoaDon}">
+								<th scope="row" th:text="${rowStat.count}"></th>
+								<td><a
+									th:href="@{/report/chiTietHoaDonNopTien/{id}(id=${row.id_hoadondongthue})}"
+									th:text="${row.ngaydongtien}"></a></td>
+								<td th:text="${row.sotiendadong}+' VNĐ'"></td>
+							</tr>
+
+
+						</tbody>
+					</table>
+
+					<div class="col-sm d-flex">
+
+
+						<div class="col-sm" style="text-align-last: right">
+						
+							
+								<a th:href="@{/home}" >
+								<button type="button" class="btn btn-warning">Cancel</button>
+								</a>
+							
+
+							<button type="button" onclick=(XuatBaoCao())
+								class="btn btn-primary" style="">
+								<a>Xuất báo cáo</a>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<footer th:replace="fragments::script_bootstrap"> </footer>
+	<script>
+	$(document).ready(function(){
+		var currentdate = new Date(); 
+	    var datetime = "ngày " + currentdate.getDate() + "/"
+	                + (currentdate.getMonth()+1)  + "/" 
+	                + currentdate.getFullYear() + " thời gian "  
+	                + currentdate.getHours() + ":"  
+	                + currentdate.getMinutes() + ":" 
+	                + currentdate.getSeconds();
+
+	
+		console.log(datetime);
+			$("#thoi_gian_hien_tai").text(datetime);
+		});
+function XuatBaoCao(){
+	alert('xuất báo cáo thành công');
+}
+	
+</script>
+
+</body>
+</html>
+

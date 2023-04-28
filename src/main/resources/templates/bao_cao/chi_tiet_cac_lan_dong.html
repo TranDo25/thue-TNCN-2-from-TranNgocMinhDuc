@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div>
+		<div th:replace="fragments::link_css"></div>
+		<div th:replace="fragments::navbar"></div>
+		<div th:replace="fragments::sidebar"></div>
+		<h1 class="d-flex justify-content-center mt-3 mb-3 p-3">CHI TIẾT
+			ĐÓNG THUẾ</h1>
+
+		<div class="card d-flex justify-content-center" th:object="${obj}">
+			<div class="container" style="margin-top: 30px">
+				<div class="row">
+					<div class="col-sm">
+						<strong>Mã giao dịch:</strong>
+					</div>
+
+					<div class="col-sm" style="color: black">
+						<p th:text="*{hoaDonDongThue.id_hoadondongthue}"></p>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm">
+						<strong>Kỳ quyết toán:</strong>
+					</div>
+
+					<div class="col-sm">
+						<p th:text="*{hoaDonDongThue.kyquyettoan}"></p>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm">
+						<strong>Số tiền phải đóng:</strong>
+					</div>
+
+					<div class="col-sm">
+						<p th:text="*{hoaDonDongThue.sotienphaidong}"></p>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm">
+						<strong>Cơ quan thuế thu tiền:</strong>
+					</div>
+
+					<div class="col-sm">
+						<p th:text="*{chiCucThue.ten}"></p>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm">
+						<strong>Ngày đóng tiền</strong>
+					</div>
+
+					<div class="col-sm">
+						<p th:text="*{hoaDonDongThue.ngaydongtien}"></p>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm">
+						<strong>Tài khoản thanh toán:</strong>
+					</div>
+
+					<div class="col-sm">
+						<p th:text="*{taiKhoanThanhToan.sothe}"></p>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm">
+						<strong>Ngân hàng thanh toán:</strong>
+					</div>
+
+					<div class="col-sm">
+						<p th:text="*{nganHangHoTroThanhToan.tennganhang}"></p>
+					</div>
+				</div>
+
+
+				<div class="col-sm d-flex border-top p-3">
+					<div class="col-sm">
+
+						<span>Phụ lục</span> <a th:href="@{/report/bienlaidongtien/{id}(id=*{hoaDonDongThue.id_hoadondongthue})}">Biên lai đóng tiền</a>
+					</div>
+
+					<div class="col-sm" style="text-align-last: right">
+						<button type="button" class="btn btn-outline-primary">
+							<a>Cancel</a>
+						</button>
+
+						<button type="button" class="btn btn-primary" style="">
+							<a>Xuất báo cáo</a>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="fragments::script_bootstrap"></div>
+</body>
+</html>

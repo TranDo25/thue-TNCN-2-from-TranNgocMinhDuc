@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Nhập Thông tin Tra Cứu</title>
+</head>
+<body>
+<div th:replace="fragments::link_css"></div>
+<div th:replace="fragments::navbar"></div>
+<div th:replace="fragments::sidebar"></div>
+<main>
+  <div class="site-section">
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-md-9">
+          <!-- chỗ này là báo cáo tổng hợp số thuế đã nộp -->
+          <div class="border" id="results">
+            <form th:action="@{/theodoi/tracuu/hosodangkythue/action}" method="post">
+
+              <div style="padding: 12px;">
+                <h1 class="border-bottom"
+                    style="display: flex; justify-content: space-around;">
+                  Tra Cứu Hồ Sơ đăng ký thuế</h1>
+              </div>
+              <h2 class="display-6" style="font-style: italic;">Nhập đầy đủ các thông tin sau:</h2>
+              <div class="d-flex"
+                   style="justify-content: space-evenly; padding: 25px;">
+
+
+                <div style="display: flex; flex-direction: column; margin-bottom: 20px;">
+                  <label for="masothue" style="font-weight: bold; margin-bottom: 5px;">Mã số thuế :</label>
+                  <input type="text" class="form-control" id="masothue" name="masothue" placeholder="Nhập mã số thuế của bạn" aria-label="Mã số thuế" aria-describedby="addon-wrapping" >
+                </div>
+
+                <div style="display: flex; flex-direction: column; margin-bottom: 20px;">
+                  <label for="magiaodich" style="font-weight: bold; margin-bottom: 5px;">Mã xác thực giao dịch :</label>
+                  <input type="text" class="form-control" id="magiaodich" name="magiaodich" placeholder="Mã đã được gửi về email" aria-label="Mã xác thực" aria-describedby="addon-wrapping">
+                </div>
+
+
+
+
+              </div>
+              <div class="p-3" style="float: right;">
+                <a class="btn btn-warning" th:href="@{/home}">Cancel</a>
+                <input
+                        class="btn btn-info" id="submit-button"
+                        type="submit"
+                        value="Tra cứu hồ sơ">
+
+<!--                </input>-->
+
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+
+
+<div th:replace="fragments::script_bootstrap"></div>
+<script type="text/javascript">
+  const searchForm = document.getElementById("search-form");
+  const submitButton = document.getElementById("submit-button");
+  const taxNumberInput = document.getElementById("masothue");
+  const transactionCodeInput = document.getElementById("magiaodich");
+
+  // Disable the submit button initially
+  submitButton.disabled = true;
+
+  // Listen for changes in the input fields
+  taxNumberInput.addEventListener("input", validateInputs);
+  transactionCodeInput.addEventListener("input", validateInputs);
+
+  function validateInputs() {
+    // Check if both fields have a value
+    if (taxNumberInput.value.trim() !== "" && transactionCodeInput.value.trim() !== "") {
+      // Enable the submit button if both fields have a value
+      submitButton.disabled = false;
+
+    } else {
+      // Disable the submit button if either field is empty
+      submitButton.disabled = true;
+    }
+  }
+
+  // Add click event listener to the submit button
+  // submitButton.addEventListener("click", function(event) {
+  //   event.preventDefault(); // Prevent default form submission behavior
+  //   if (!submitButton.disabled) {
+  //     searchForm.submit(); // Submit the form
+  //   }
+  // });
+</script>
+
+
+
+</body>
+</html>

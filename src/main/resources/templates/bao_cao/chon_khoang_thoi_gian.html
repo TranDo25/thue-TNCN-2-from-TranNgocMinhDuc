@@ -1,0 +1,87 @@
+	<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Chọn khoảng thời gian</title>
+</head>
+<body>
+	<div th:replace="fragments::link_css"></div>
+	<div th:replace="fragments::navbar"></div>
+	<div th:replace="fragments::sidebar"></div>
+	<main>
+		<div class="site-section">
+			<div class="container-fluid">
+				<div class="row justify-content-center">
+					<div class="col-md-9">
+						<!-- chỗ này là báo cáo tổng hợp số thuế đã nộp -->
+						<div class="border" id="results">
+							<form id="form-1" th:action="@{/report/baoCaoTongHopSoThueDaNop}"
+								method="get">
+
+								<div style="padding: 12px;">
+									<h1 class="border-bottom"
+										style="display: flex; justify-content: space-around;">BÁO
+										CÁO TỔNG HỢP SỐ THUẾ ĐÃ NỘP</h1>
+								</div>
+								<h2 class="display-6" style="font-style: italic;">Chọn
+									khoảng thời gian xem các lần nộp thuế:</h2>
+								<div class="d-flex"
+									style="justify-content: space-evenly; padding: 25px;">
+									<div class="mb-3">
+										<label for="" class="form-label">CHỌN NGÀY BẮT ĐẦU</label> <input
+											class="form-control" id="startDate" name="startDate"
+											type="date">
+									</div>
+									<div class="mb-3">
+										<label for="" class="form-label">CHỌN NGÀY KẾT THÚC</label> <input
+											class="form-control" id="endDate" th:name="endDate"
+											aria-describedby="helpId" placeholder="" type="date" value="">
+									</div>
+								</div>
+								<div class="p-3" style="float: right;">
+									<a class="btn btn-warning" th:href="@{/home}">Cancel</a> <input
+										class="btn btn-info" id="submit-button" type="button"
+										value="Xem báo cáo"></input>
+
+								</div>
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+
+
+
+	<div th:replace="fragments::script_bootstrap"></div>
+	<script>
+	$('#submit-button').click(function() {
+		debugger;
+		  var startDate = $('#startDate').val();
+		  var endDate = $('#endDate').val();
+		  var currentDate = new Date().getTime();
+		  
+		  if(startDate == null || startDate == ""){
+			  alert('bạn chưa chọn ngày bắt đầu');
+		  }
+		  else if(endDate == null || endDate ==""){
+			  alert('bạn chưa chọn ngày kết thúc');
+		  }
+		  else if(new Date($('#startDate').val()).getTime() > currentDate){
+			  alert('ngày bắt đầu không hợp lệ');
+		  }
+		  else if(new Date($('#endDate').val()).getTime() > currentDate){
+			  alert('ngày kết thúc không hợp lệ');
+		  }
+		  else if (startDate <= endDate) {
+		    $('#form-1').submit();
+		  } else {
+		    alert('ngày bắt đầu phải nhỏ hơn hoặc bằng ngày kết thúc');
+		  }
+		});
+	</script>
+</body>
+</html>

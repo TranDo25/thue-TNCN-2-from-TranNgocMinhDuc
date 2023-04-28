@@ -1,0 +1,63 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Trang chu</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+
+	<div th:replace="fragments::link_css"></div>
+
+
+	<div th:replace="fragments::navbar"></div>
+	<div th:replace="fragments::sidebar"></div>
+	
+
+
+	<main>
+		<div class="site-section">
+			<div class="container-fluid">
+				<div class="row justify-content-center">
+					<div class="col-md-9">
+						<!-- chỗ này là báo cáo tổng hợp số thuế đã nộp -->
+						<div class="border" id="results">
+							
+							<!-- chỗ này là jumbotron -->
+							<div class="jumbotron jumbotron-fluid bg-light-modified"
+								id="home-jumbotron">
+								<div class="container">
+									<h1 class="display-4">Phần mềm hỗ trợ tính TNCN</h1>
+									<p class="lead text-dark">Nhóm chức năng 2: theo dõi danh
+										sách, xuất báo cáo, cấu hình</p>
+								</div>
+							</div>
+						
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<script th:src="@{/assets2/08/js/jquery-3.3.1.min.js}"></script>
+	<script th:src="@{/assets2/08/js/popper.min.js}"></script>
+	<script th:src="@{/assets2/08/js/bootstrap.min.js}"></script>
+	<script th:src="@{/assets2/08/js/main.js}"></script>
+	<div th:replace="fragments::show_toast_script"></div>
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.18.0/additional-methods.js"></script>
+
+
+</body>
+</html>
+

@@ -1,0 +1,78 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Trang chu</title>
+	<style>
+.bg-light-modified {
+	background-color: #91c8ff;
+}
+</style>
+</head>
+<body>
+	<div th:replace="fragments::link_css"></div>
+	<div th:replace="fragments::admin_navbar"></div>
+	<div th:replace="fragments::admin_sidebar"></div>
+	<main>
+		<div class="site-section">
+
+			<div class="container-fluid">
+				<div class="row justify-content-center">
+					<div class="col-md-9">
+						<div class="" id="results">
+
+							<div class="row align-items-md-stretch">
+								<div class="col-md-6">
+									<div class="h-100 p-5 bg-light-modified border border-dark rounded-3">
+										<h2>Cấu hình biểu thuế lũy tiến</h2>
+										<p class="text-dark">Biểu thuế lũy tiến từng phần đánh
+											thuế thu nhập chịu thuế theo từng mức thuế khác nhau</p>
+										<a type="button" class="btn btn-info"
+											th:href="@{/admin/BieuThueLuyTienTungPhan}">Cấu hình
+											biểu thuế lũy tiến</a>
+										</button>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="h-100 p-5 bg-light-modified border border-dark rounded-3">
+										<h2>Cấu hình biểu thuế toàn phần</h2>
+										<p class="text-dark">Biểu thuế toàn phần là biểu thuế áp
+											dụng cho những khoản thu nhập đặc biệt trong luật thuế, không
+											đánh thuế theo bậc thuế mà đánh thuế toàn phần</p>
+										<a type="button" class="btn btn-info"
+											th:href="@{/admin/BieuThueToanPhan}">Cấu hình biểu thuế
+											toàn phần</a>
+										</button>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<script th:src="@{/assets2/08/js/jquery-3.3.1.min.js}"></script>
+	<script th:src="@{/assets2/08/js/popper.min.js}"></script>
+	<script th:src="@{/assets2/08/js/bootstrap.min.js}"></script>
+	<script th:src="@{/assets2/08/js/main.js}"></script>
+
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.18.0/additional-methods.js"></script>
+
+
+
+</body>
+</html>
+
