@@ -18,5 +18,21 @@ public class Nganhanghotrothanhtoan {
     @Column(name = "tennganhang")
     private String tennganhang;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getTennganhang() {
+        return tennganhang;
+    }
+
+    public void setTennganhang(String tennganhang) {
+        this.tennganhang = tennganhang;
+    }
+
 
 }

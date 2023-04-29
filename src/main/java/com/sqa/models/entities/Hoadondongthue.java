@@ -37,4 +37,8 @@ public class Hoadondongthue {
 
     public Hoadondongthue(Hoadondongthue hoaDon) {
     }
+
+    public void setId(String id) {
+        this.id_coquanthue = id;
+    }
 }

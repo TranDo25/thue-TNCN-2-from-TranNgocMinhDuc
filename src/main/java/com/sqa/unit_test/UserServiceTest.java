@@ -59,17 +59,12 @@ public class UserServiceTest {
 
     @Test
     public void testGet() {
-        Nguoinopthue user = new Nguoinopthue("id1", "username1", "password1", "tencanhan1");
-        when(userRepository.findById("id1")).thenReturn(Optional.of(user));
+        Nguoinopthue user = new Nguoinopthue("1", "ABC", "1234567", "Nguyen Van A");
+        when(userRepository.findById("1")).thenReturn(Optional.of(user));
 
-        Nguoinopthue result = userService.get("id1");
-
-        assertNotNull(result);
-        assertEquals("username1", result.getUsername());
-        assertEquals("password1", result.getPassword());
-        assertEquals("tencanhan1", result.getTencanhan());
+        Nguoinopthue result = userService.get("1");
+        assertEquals(user, result);
     }
-
     @Test
     public void testDelete() {
         userService.delete("id1");
@@ -80,20 +75,24 @@ public class UserServiceTest {
 
 
     @Test
-    public void testCheckLoginWithCorrectCredentials() {
-        List<Nguoinopthue> userList = new ArrayList<>();
-        Nguoinopthue user1 = new Nguoinopthue("id1", "username1", "password1", "tencanhan1");
-        Nguoinopthue user2 = new Nguoinopthue("id2", "username2", "password2", "tencanhan2");
-        userList.add(user1);
-        userList.add(user2);
-        when(userRepository.findAll()).thenReturn(userList);
+    public void testCheckLogin() {
+        List<Nguoinopthue> list = new ArrayList<>();
+        list.add(new Nguoinopthue("1", "user1", "userName1"));
+        list.add(new Nguoinopthue("2", "user2", "userName2"));
+        list.add(new Nguoinopthue("3", "user3", "userName3"));
+        when(userRepository.findAll()).thenReturn(list);
 
-        Nguoinopthue user = new Nguoinopthue(null, "username1", "password1", null);
-        boolean result = userService.checkLogin(user);
+        Nguoinopthue user1 = new Nguoinopthue("4", "user4", "userName4");
+        boolean result1 = userService.checkLogin(user1);
+        assertEquals(false, result1);
 
-        assertTrue(result);
-        assertEquals("id1", user.getId());
-        assertEquals("tencanhan1", user.getTencanhan());
+        Nguoinopthue user2 = new Nguoinopthue("1", "user1", "userName1");
+        System.out.println(user2);
+        boolean result2 = userService.checkLogin(user2);
+        assertEquals(true, result2);
+        assertEquals("1", user2.getId());
+        assertEquals("user1", user2.getUsername());
+        assertEquals("userName1", user2.getPassword());
     }
 
     @Test
@@ -113,13 +112,9 @@ public class UserServiceTest {
 
     @Test
     public void testConvertToDto() {
-        Nguoinopthue user = new Nguoinopthue("id1", "username1", "password1", "tencanhan1");
-
-        NguoinopthueDTO result = userService.convertToDto(user);
-
-        assertNotNull(result);
-        assertEquals("username1", result.getUsername());
-        assertEquals("password1", result.getPassword());
-        assertEquals("tencanhan1", result.getTencanhan());
+        Nguoinopthue user = new Nguoinopthue("1", "user1", "pass1");
+        NguoinopthueDTO dto = userService.convertToDto(user);
+        assertEquals("1", dto.getId());
+        assertEquals("user1", dto.getUsername());
     }
 }

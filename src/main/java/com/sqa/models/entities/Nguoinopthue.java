@@ -49,10 +49,20 @@ public class Nguoinopthue {
     private String diachilienlac;
 
 
-    public Nguoinopthue(String id1, String username1, String password1, String tencanhan1) {
+    public Nguoinopthue(String id, String username, String password, String tencanhan) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.tencanhan = tencanhan;
     }
 
     public Nguoinopthue() {
 
+    }
+
+    public Nguoinopthue(String id,  String username, String password) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
     }
 }

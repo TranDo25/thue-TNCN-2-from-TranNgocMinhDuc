@@ -1,6 +1,8 @@
 package com.sqa.services;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import com.sqa.models.dtos.NguoinopthueDTO;
 import org.modelmapper.ModelMapper;
@@ -19,7 +21,10 @@ public class UserService {
 	@Autowired 
 	private UserRepository repository;
 	@Autowired
-	private ModelMapper mapper;
+	private final ModelMapper mapper;
+	public UserService() {
+		this.mapper = new ModelMapper();
+	}
 	
 	public List<Nguoinopthue> listAllUser() {
 		return repository.findAll();
@@ -32,22 +37,24 @@ public class UserService {
 	public Nguoinopthue get(String id) {
 		return repository.findById(id).get();
 	}
-	
 	public void delete(String id) {
 		repository.deleteById(id);
 	}
 	public boolean checkLogin(Nguoinopthue user) {
-		List<Nguoinopthue> list=repository.findAll();
-		for(Nguoinopthue i:list) {
-			if(i.getUsername().compareTo(user.getUsername())==0 && i.getPassword().compareTo(user.getPassword())==0) {
-				user.setId(i.getId());
-				user.setTencanhan(i.getTencanhan());
-				return true;
+		List<Nguoinopthue> list = repository.findAll();
+		if (list != null) {
+			for (Nguoinopthue i : list) {
+				String username = i.getUsername();
+				String password = i.getPassword();
+				if (username != null && password != null && username.compareTo(user.getUsername()) == 0 && password.compareTo(user.getPassword()) == 0) {
+					user.setId(i.getId());
+					user.setTencanhan(i.getTencanhan());
+					return true;
+				}
 			}
 		}
 		return false;
 	}
-
 	public NguoinopthueDTO convertToDto(Nguoinopthue person) {
 		NguoinopthueDTO nntDTO = mapper.map(person, NguoinopthueDTO.class);
 		return nntDTO;
@@ -59,4 +66,5 @@ public class UserService {
 	public Nguoinopthue getByMasothue(String masothue) {
 		return repository.getByMaSoThue(masothue);
 	}
+
 }
