@@ -107,7 +107,7 @@ public class AdminCauHinhController {
 //	}
 
 	@PostMapping("/apiThemMucThueLuyTien")
-	public ResponseEntity<Boolean> ThemMucThue(@CookieValue(value = "adminId", defaultValue = "-1") String adminIdtmp,
+	public ResponseEntity<Boolean> ThemMucThueLuyTien(@CookieValue(value = "adminId", defaultValue = "-1") String adminIdtmp,
 			@RequestBody Bieuthueluytientungphan btlt, HttpServletRequest request, Model model) {
 		Bieuthueluytientungphan res = btltService.themMucThueLuyTien(adminIdtmp, btlt);
 		if (res != null) {
@@ -149,7 +149,7 @@ public class AdminCauHinhController {
 	}
 
 	@PostMapping("/apiUpdateMucThueToanPhan")
-	public ResponseEntity<Boolean> UpdateMucThueToanPhan(
+		public ResponseEntity<Boolean> UpdateMucThueToanPhan(
 			@CookieValue(value = "adminId", defaultValue = "-1") String adminIdtmp, @RequestBody Bieuthuetoanphan bttp,
 			HttpServletRequest request, Model model) {
 		int adminId = Integer.parseInt(adminIdtmp);

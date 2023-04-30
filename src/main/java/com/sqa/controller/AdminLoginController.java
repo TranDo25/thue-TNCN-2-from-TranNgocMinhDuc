@@ -7,10 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -32,7 +29,7 @@ public class AdminLoginController {
 	}
 
 	@PostMapping("/processLogin")
-	public String processLogin(Model model, SystemAdmin admin, HttpServletResponse response) {
+	public String processLogin(Model model,  @RequestBody SystemAdmin admin, HttpServletResponse response) {
 		SystemAdmin res = this._adminService.checkLogin(admin);
 		if (res != null) {
 			response.addCookie(new Cookie("adminId", res.getId() + ""));
