@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Đăng ký</title>
+    <title>Đăng nhập</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,11 +14,15 @@
 
 <body>
 <div class="container text-center">
-    <div class="m-5">
-        <h1>Thuế TNCN Administrator</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <h1 class="display-5">Thuế TNCN</h1>
+            </div>
+        </div>
     </div>
 
-    <form th:action="@{/admin/processLogin}" method="post" th:object="${user}"
+    <form th:action="@{/processLogin}" method="post" th:object="${user}"
           style="max-width: 600px; margin: 0 auto;">
         <div class="m-5">
             <div class="form-group row m-5">
@@ -40,7 +44,11 @@
             <div>
                 <button type="submit" class="btn btn-primary">Đăng nhập</button>
             </div>
-         
+            <div>
+                <a th:href="@{/register}">
+                <button type="button" class="btn btn-outline-primary">Đăng ký</button>
+                </a>
+            </div>
         </div>
         <div class="alert alert-primary" role="alert">
             <i th:text="${message}" style="color: red"></i>

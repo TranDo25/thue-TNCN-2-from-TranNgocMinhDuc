@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết giấy nộp tiền</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+<div th:replace="fragments::link_css"></div>
+<div th:replace="fragments::navbar"></div>
+<div th:replace="fragments::sidebar"></div>
+
+<main>
+    <div class="site-section">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-md-9">
+
+                    <div class="border" id="results">
+
+                        <style>
+                            input {
+                                margin-right: 5px;
+                            }
+
+                            .second-header {
+                                text-align: center;
+                            }
+
+                            .form-check {
+                                margin-right: 80px;
+                            }
+                        </style>
+                        <div class="border" th:object="${obj}">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col text-center">
+                                        <h1 class="display-5">Chi tiết giấy nộp tiền</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>
+                                <strong> số giấy nộp tiền: </strong>
+                                31023953405739579347349739847234237823
+                            </p>
+                            <div class="table-responsive-sm"
+                                 style="margin-left: 30px; margin-right: 30px">
+                                <table class="table table-default table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col" colspan="2"></th>
+
+                                        <td scope="col" colspan="2" style="text-align: center"><strong>mẫu
+                                            số C1-02/NS</strong>
+                                            <p style="font-style: normal">(Ban hành kèm theo Thông
+                                                tư số 84/2016/TT-BTC của Bộ Tài chính)</p></td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr class="">
+                                        <td scope="row" class="" style="">
+                                            <p class="border border-dark p-3" style="width: 230px">Không
+                                                ghi vào khu vực này</p>
+                                        </td>
+
+                                        <td colspan="2" style="text-align: center">
+                                            <h6>GIẤY NỘP TIỀN VÀO NGÂN SÁCH NHÀ NƯỚC</h6>
+                                            <div class="d-flex"
+                                                 style="margin-right: 90px; justify-content: space-around;">
+
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value=""
+                                                           checked onclick="return false;">
+                                                    <label class="form-check-label">
+                                                        Tiền mặt </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value=""
+                                                           onclick="return false;"> <label
+                                                        class="form-check-label">
+                                                    Chuyển khoản </label>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="d-flex ">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value=""
+                                                           checked onclick="return false;">
+                                                    <label class="form-check-label">
+                                                        VND </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value=""
+                                                           onclick="return false;"> <label
+                                                        class="form-check-label">
+                                                    USD </label>
+                                                </div>
+
+                                                <div>
+                                                    <label>Khác:</label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <label style="width: 70px">Mã hiệu:</label>
+                                            </div>
+                                            <div>
+                                                <label style="width: 70px">Số:</label> <span>0166917</span>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div></div>
+                            <div style="margin-left: 30px; margin-right: 30px">
+                                <div>
+                                    <label>số tham chiếu:</label> <span
+                                        th:text="*{hoaDonDongThue.id_hoadondongthue}"></span>
+                                </div>
+                                <div>
+                                    <div>
+                                        <label>người nộp thuế: </label> <span
+                                            th:text="*{nguoiNopThue.tencanhan}"></span><br> <label
+                                    >mã số thuế:</label> <span
+                                            th:text="*{nguoiNopThue.masothue}"></span><br>
+                                    </div>
+                                    <div>
+                                        <label>địa chỉ: </label> <span
+                                            th:text="*{nguoiNopThue.diachilienlac}"></span>
+
+                                    </div>
+                                    <div>
+                                        <label>người nộp thay:</label>
+                                    </div>
+                                    <div>
+                                        <label>Đề nghị NH/KBNN:&nbsp</label> <span
+                                            th:text="*{nganHangHoTroThanhToan.tennganhang}"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+                                        <label>trích TK số:</label> <span
+                                            th:text="*{taiKhoanThanhToan.sothe}"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label>hoặc thu tiền mặt để nộp NSNN theo:</label>
+                                    </div>
+                                    <div class="d-flex" style="justify-content: flex-start;">
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                   checked onclick="return false;">
+                                            <label class="form-check-label">
+                                                TK thu NSNN </label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                   onclick="return false;"> <label
+                                                class="form-check-label"> TK
+                                            tạm thu </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                   onclick="return false;"> <label
+                                                class="form-check-label"> TK
+                                            thu hồi thuế GTGT </label>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label>vào tài khoản của KBNN: </label> <span
+                                            th:text="*{chiCucThue.sotaikhoan}"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        Tỉnh, TP:</label> <span th:text="*{chiCucThue.tinhthanhpho}"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </div>
+                                    <div>
+                                        <label>mở tại NH ủy nhiệm thu:</label> <span
+                                            th:text="*{nganHangHoTroThanhToan.tennganhang}"></span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </div>
+                                    <div>
+                                        <label>Nộp theo văn bản của cơ quan có thẩm quyền: </label>
+                                        <div class="d-flex" style="">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                       checked onclick="return false;">
+                                                <label class="form-check-label">
+                                                    Kiểm toán nhà nước </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                       onclick="return false;"> <label
+                                                    class="form-check-label">
+                                                Thanh tra tài chính </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                       onclick="return false;"> <label
+                                                    class="form-check-label">
+                                                Thanh tra chính phủ </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                       onclick="return false;"> <label
+                                                    class="form-check-label">
+                                                Cơ quan có thẩm quyền khác </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label>Tên cơ quan quản lý thu:</label>
+                                        <div class="table-responsive-sm">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                <tr>
+                                                    <th scope="col" colspan="3" style="text-align: center">
+                                                        Phần dành cho người nộp thuế ghi
+                                                    </th>
+
+                                                    <th scope="col" colspan="2" style="text-align: center">
+                                                        Phần dành cho NH ủy nhiệm thu/NH phối hợp thu/KBNN ghi
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr class="">
+                                                    <td class="second-header" scope="row">STT</td>
+                                                    <td class="second-header">Nội dung các khoản nộp
+                                                        NSNN
+                                                    </td>
+
+                                                    <td class="second-header">Số tiền VND</td>
+                                                    <td class="second-header">Mã chương</td>
+                                                    <td class="second-header">Mã tiểu mục</td>
+                                                </tr>
+                                                <tr class="">
+                                                    <td scope="row">1</td>
+                                                    <td>Thuế TNCN từ tiền lương, tiền công; Kỳ: 03/2023;
+                                                        Ghi chú: Nộp tạm tính thuế
+                                                    </td>
+                                                    <td th:text="*{hoaDonDongThue.sotiendadong}"></td>
+
+                                                    <td style="text-align: center;">754</td>
+                                                    <td style="text-align: center;">1052</td>
+
+
+                                                </tr>
+
+
+                                                <tr class="">
+
+
+                                                    <td colspan="2" style="text-align: right"><strong>Tổng
+                                                        cộng</strong></td>
+                                                    <td th:text="*{hoaDonDongThue.sotiendadong}"
+                                                        id="tongcong" th:value="*{hoaDonDongThue.sotiendadong}"></td>
+
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <div>
+                                                <label style="font-style: italic">Tổng số tiền ghi
+                                                    bằng chữ:</label> &nbsp;<strong id="moneyConvertToText"
+                                                                                    style="font-style: italic;"></strong>
+                                            </div>
+                                            <div class="table-responsive-sm w-75">
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                    <tr>
+                                                        <th scope="col">PHẦN DÀNH CHO KBNN GHI KHI HẠCH
+                                                            TOÁN
+                                                        </th>
+                                                        <th scope="col"></th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr class="">
+                                                        <td scope="row"><label>Mã CQ thu:</label>
+                                                            <p>...................</p></td>
+                                                        <td scope="row"><label> Mã ĐBHC:</label>
+                                                            <p>...................</p></td>
+                                                    </tr>
+                                                    <tr class="">
+                                                        <td scope="row"><label>Nợ TK:</label>
+                                                            <p>.....................</p></td>
+                                                        <td scope="row"><label>Có TK:</label>
+                                                            <p>.....................</p></td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="d-flex flex-column table-responsive-sm w-75">
+
+                                                <span class="text-success"><i class="fa-solid fa-user-check"
+                                                                              style="color: #5af745;"></i>&ensp;Ký điện tử bởi: Tổng cục thuế</span>
+                                                <span class="text-success"><i class="fa-solid fa-user-check"
+                                                                              style="color: #5af745;"></i>&ensp;Ký điện tử bởi: Ngân hàng Vietcombank</span>
+                                                <span class="text-success"><i class="fa-solid fa-user-check"
+                                                                              style="color: #5af745;"></i>&ensp;Ký điện tử bởi: Người nộp thuế</span>
+
+
+                                                <!-- 			 <table class="table table-bordered">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th scope="col"><strong>NGƯỜI NỘP TIỀN</strong>
+                                                                            <p>Ngày...tháng...năm</p></th>
+                                                                        <th scope="col"><strong>NGÂN HÀNG/KHO BẠC
+                                                                                NHÀ NƯỚC</strong>
+                                                                            <p>Ngày...tháng...năm</p></th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr class="">
+                                                                        <td scope="row">
+                                                                            <div class="d-flex justify-content-around">
+                                                                                <strong>Thủ quỹ</strong> <strong>Kế toán
+                                                                                    trưởng</strong> <strong>Kế toán</strong>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td scope="row">
+                                                                            <div class="d-flex justify-content-around">
+                                                                                <strong>Người nộp tiền</strong> <strong>Thủ
+                                                                                    trưởng đơn vị</strong> <strong>Kế toán trưởng</strong>
+
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr class="">
+                                                                        <td scope="row"></td>
+                                                                        <td>
+                                                                            <p style="float: right">(Ghi chức danh, ký, họ tên
+                                                                                và đóng dấu)</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table> -->
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="">
+                                    <p>
+                                        <strong> Ghi chú: </strong> Trường hợp nộp thuế điện tử:
+                                        Người nộp tiền, Tổ chức T-VAN (nếu có), Tổng cục Thuế (nếu
+                                        có), Ngân hàng/ Kho bạc Nhà nước thực hiện ký số; ghi tên;
+                                        ngày, giờ
+                                    </p>
+                                    <p>(1) Trường hợp nộp thuế điện tử từ Cổng thông tin điện
+                                        tử của Tổng cục Thuế, hệ thống tự động điền số tham chiếu để
+                                        phục vụ công tác quản lý.</p>
+                                    <p>(2) Trường hợp nộp tiền bằng VND thì ghi bằng chữ theo
+                                        tổng số tiền VND; Trường hợp nộp tiền bằng ngoại tệ thì ghi
+                                        bằng chữ theo tổng số nguyên tệ và loại ngoại tệ.</p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</main>
+<div th:replace="fragments::script_bootstrap"></div>
+<script>
+    $(document).ready(function () {
+        debugger;
+        var tongcong = $('#tongcong').text();
+        console.log(tongcong);
+        const number = parseFloat($('#tongcong').text());
+        console.log(number);
+
+
+        $('#moneyConvertToText').text(number.ReadMoney('VND'));
+
+    });
+    var ChuSo = new Array(" không", " một", " hai", " ba", " bốn", " năm", " sáu", " bảy", " tám", " chín");
+    var Tien = new Array("", " nghìn", " triệu", " tỷ", " nghìn tỷ", " triệu tỷ");
+
+    //1. Hàm đọc số có 3 chữ số
+    function DocSo3ChuSo(baso, ismax) {
+        var tram;
+        var chuc;
+        var donvi;
+        var KetQua = "";
+        tram = parseInt(baso / 100);
+        chuc = parseInt(baso % 100 / 10);
+        donvi = baso % 10;
+        if (tram === 0 && chuc === 0 && donvi === 0) return "";
+        if (tram === 0 && !ismax) {
+            KetQua += ChuSo[tram] + " trăm";
+            if (chuc === 0 && donvi !== 0) KetQua += " lẻ";
+        }
+        if (tram > 0) {
+            KetQua += ChuSo[tram] + " trăm";
+            if (chuc === 0 && donvi !== 0) KetQua += " lẻ";
+        }
+
+        if (chuc !== 0 && chuc !== 1) {
+            KetQua += ChuSo[chuc] + " mươi";
+            if (chuc === 0 && donvi !== 0) KetQua = KetQua + " lẻ";
+        }
+        if (chuc === 1) KetQua += " mười";
+        switch (donvi) {
+            case 1:
+                if (chuc !== 0 && chuc !== 1) {
+                    KetQua += " mốt";
+                } else {
+                    KetQua += ChuSo[donvi];
+                }
+                break;
+            case 5:
+                if (chuc === 0) {
+                    KetQua += ChuSo[donvi];
+                } else {
+                    KetQua += " lăm";
+                }
+                break;
+            default:
+                if (donvi !== 0) {
+                    KetQua += ChuSo[donvi];
+                }
+                break;
+        }
+        return KetQua;
+    }
+
+    Number.prototype.ReadMoney = function (currency) {
+        var SoTien = this.valueOf();
+        //if (SoTien < 0) return "Số tiền âm!";
+        if (SoTien > 0) {
+            so = SoTien;
+        } else {
+            so = -SoTien;
+        }
+        if (so > 8999999999999999) {
+            return "Số quá lớn!";
+        }
+        var result = "";
+        if (currency == undefined || currency == '' || currency == 'VND') {
+            if (so == 0) return "Không đồng.";
+            so = Math.round(so);
+            result = so.FncReadNumber(true) + " đồng.";
+        }
+        if (currency == 'CNY') {
+            if (so == 0) return "Không nhân dân tệ.";
+            var strSoTien = so.toString().split(".");
+            if (strSoTien.length > 1) {
+                if (strSoTien[1].length >= 1) {
+                    if (parseInt(strSoTien[1]) < 10 && strSoTien[1].length == 2)
+                        result = parseInt(strSoTien[0]).FncReadNumber(true) + " chấm không " + parseInt(strSoTien[1]).FncReadNumber(false) + " nhân dân tệ.";
+                    else {
+                        var sole = strSoTien[1].length == 1 ? parseInt(strSoTien[1]) * 10 : parseInt(strSoTien[1]);
+                        result = parseInt(strSoTien[0]).FncReadNumber(true) + " chấm " + sole.FncReadNumber(false) + " nhân dân tệ.";
+                    }
+                } else
+                    console.log("Đọc thành tiền lỗi");
+            } else
+                result = so.FncReadNumber(true) + " nhân dân tệ.";
+        }
+        if (currency == 'HKD') {
+            if (so == 0) return "Không đô la Hồng kong.";
+            var strSoTien = so.toString().split(".");
+            if (strSoTien.length > 1) {
+                if (strSoTien[1].length >= 1) {
+                    if (parseInt(strSoTien[1]) < 10 && strSoTien[1].length == 2)
+                        result = parseInt(strSoTien[0]).FncReadNumber(true) + " chấm không " + parseInt(strSoTien[1]).FncReadNumber(false) + " đô la Hồng kong.";
+                    else {
+                        var sole = strSoTien[1].length == 1 ? parseInt(strSoTien[1]) * 10 : parseInt(strSoTien[1]);
+                        result = parseInt(strSoTien[0]).FncReadNumber(true) + " chấm " + sole.FncReadNumber(false) + " đô la Hồng kong.";
+                    }
+                } else
+                    console.log("Đọc thành tiền lỗi");
+            } else
+                result = so.FncReadNumber(true) + " đô la Hồng kong.";
+        }
+        if (currency == 'INR') {
+            if (so == 0) return "Không rúp Ấn Độ.";
+            var strSoTien = so.toString().split(".");
+            if (strSoTien.length > 1) {
+                if (strSoTien[1].length >= 1) {
+                    if (parseInt(strSoTien[1]) < 10 && strSoTien[1].length == 2)
+                        result = parseInt(strSoTien[0]).FncReadNumber(true) + " chấm không " + parseInt(strSoTien[1]).FncReadNumber(false) + " rúp Ấn Độ.";
+                    else {
+                        var sole = strSoTien[1].length == 1 ? parseInt(strSoTien[1]) * 10 : parseInt(strSoTien[1]);
+                        result = parseInt(strSoTien[0]).FncReadNumber(true) + " chấm " + sole.FncReadNumber(false) + " rúp Ấn Độ.";
+                    }
+                } else
+                    console.log("Đọc thành tiền lỗi");
+            } else
+                result = so.FncReadNumber(true) + " rúp Ấn Độ.";
+        }
+        if (currency == 'JPY') {
+            if (so == 0) return "Không yên Nhật.";
+            var strSoTien = so.toString().split(".");
+            if (strSoTien.length > 1) {
+                if (strSoTien[1].length >= 1) {
+                    if (parseInt(strSoTien[1]) < 10 && strSoTien[1].length == 2)
+                        result = parseInt(strSoTien[0]).FncReadNumber(true) + " chấm không " + parseInt(strSoTien[1]).FncReadNumber(false) + " yên Nhật.";
+                    else {
+                        var sole = strSoTien[1].length == 1 ? parseInt(strSoTien[1]) * 10 : parseInt(strSoTien[1]);
+                        result = parseInt(strSoTien[0]).FncReadNumber(true) + " chấm " + sole.FncReadNumber(false) + " yên Nhật.";
+                    }
+
+                } else
+                    console.log("Đọc thành tiền lỗi");
+            } else
+                result = so.FncReadNumber(true) + " yên Nhật.";
+        }
+        if (currency == 'IDR') {
+            if (so == 0) return "Không Rupiah Indonesia.";
+            var strSoTien = so.toString().split(".");
+            if (strSoTien.length > 1) {
+                if (strSoTien[1].length >= 1) {
+                    if (parseInt(strSoTien[1]) < 10 && strSoTien[1].length == 2)
+                        result = parseInt(strSoTien[0]).FncReadNumber(true) + " chấm không " + parseInt(strSoTien[1]).FncReadNumber(false) + " Rupiah Indonesia.";
+                    else {
+                        var sole = strSoTien[1].length == 1 ? parseInt(strSoTien[1]) * 10 : parseInt(strSoTien[1]);
+                        result = parseInt(strSoTien[0]).FncReadNumber(true) + " chấm " + sole.FncReadNumber(false) + " Rupiah Indonesia.";
+                    }
+
+                } else
+                    console.log("Đọc thành tiền lỗi");
+            } else
+                result = so.FncReadNumber(true) + " Rupiah.";
+        }
+        if (currency == 'KHR') {
+            if (so == 0) return "Không Riêl.";
+            var strSoTien = so.toString().split(".");
+            if (strSoTien.length > 1) {
+                if (strSoTien[1].length >= 1) {
+                    if (parseInt(strSoTien[1]) < 10 && strSoTien[1].length == 2)
+                        result = parseInt(strSoTien[0]).FncReadNumber(true) + " chấm không " + parseInt(strSoTien[1]).FncReadNumber(false) + " Riêl.";
+                    else {
+                        var sole = strSoTien[1].length == 1 ? parseInt(strSoTien[1]) * 10 : parseInt(strSoTien[1]);
+                        result = parseInt(strSoTien[0]).FncReadNumber(true) + " chấm " + sole.FncReadNumber(false) + " Riêl.";
+                    }
+
+                } else
+                    console.log("Đọc thành tiền lỗi");
+            } else
+                result = so.FncReadNumber(true) + " Riêl.";
+        }
+        if (currency == 'KRW') {
+            if (so == 0) return "Không Won.";
+            var strSoTien = so.toString().split(".");
+            if (strSoTien.length > 1) {
+                if (strSoTien[1].length >= 1) {
+                    if (parseInt(strSoTien[1]) < 10 && strSoTien[1].length == 2)
+                        result = parseInt(strSoTien[0]).FncReadNumber(true) + " chấm không " + parseInt(strSoTien[1]).FncReadNumber(false) + " Won.";
+                    else {
+                        var sole = strSoTien[1].length == 1 ? parseInt(strSoTien[1]) * 10 : parseInt(strSoTien[1]);
+                        result = parseInt(strSoTien[0]).FncReadNumber(true) + " chấm " + sole.FncReadNumber(false) + " Won.";
+                    }
+
+                } else
+                    console.log("Đọc thành tiền lỗi");
+            } else
+                result = so.FncReadNumber(true) + " Won.";
+        }
+        if (currency == 'MMK') {
+            if (so == 0) return "Không Kyat.";
+            var strSoTien = so.toString().split(".");
+            if (strSoTien.length > 1) {
+                if (strSoTien[1].length >= 1) {
+                    if (parseInt(strSoTien[1]) < 10 && strSoTien[1].length == 2)
+                        result = parseInt(strSoTien[0]).FncReadNumber(true) + " chấm không " + parseInt(strSoTien[1]).FncReadNumber(false) + " Kyat.";
+                    else {
+                        var sole = strSoTien[1].length == 1 ? parseInt(strSoTien[1]) * 10 : parseInt(strSoTien[1]);
+                        result = parseInt(strSoTien[0]).FncReadNumber(true) + " chấm " + sole.FncReadNumber(false) + " Kyat.";
+                    }
+
+                } else
+                    console.log("Đọc thành tiền lỗi");
+            } else
+                result = so.FncReadNumber(true) + " Kyat.";
+        }
+        if (currency == 'MYR') {
+            if (so == 0) return "Không Ringgit.";
+            var strSoTien = so.toString().split(".");
+            if (strSoTien.length > 1) {
+                if (strSoTien[1].length >= 1) {
+                    if (parseInt(strSoTien[1]) < 10 && strSoTien[1].length == 2)
+                        result = parseInt(strSoTien[0]).FncReadNumber(true) + " chấm không " + parseInt(strSoTien[1]).FncReadNumber(false) + " Ringgit.";
+                    else {
+                        var sole = strSoTien[1].length == 1 ? parseInt(strSoTien[1]) * 10 : parseInt(strSoTien[1]);
+                        result = parseInt(strSoTien[0]).FncReadNumber(true) + " chấm " + sole.FncReadNumber(false) + " Ringgit.";
+                    }
+                } else
+                    console.log("Đọc thành tiền lỗi");
+            } else
+                result = so.FncReadNumber(true) + " Ringgit.";
+        }
+        if (currency == 'SGD') {
+            if (so == 0) return "Không đô la Sin.";
+            var strSoTien = so.toString().split(".");
+            if (strSoTien.length > 1) {
+                if (strSoTien[1].length == 2 || strSoTien[1].length == 1) {
+                    if (strSoTien[1].length == 1) {
+                        strSoTien[1] = strSoTien[1].length == 1 ? strSoTien[1] * 10 : strSoTien[1];
+                        result = parseInt(strSoTien[0]).FncReadNumber(true) + " đô la Sin và " + parseInt(strSoTien[1]).FncReadNumber(false) + " xen.";
+                    }
+                    if (strSoTien[1].length == 2) {
+                        if (parseInt(strSoTien[1]) < 10)
+                            result = parseInt(strSoTien[0]).FncReadNumber(true) + " đô la Sin và lẻ " + parseInt(strSoTien[1]).FncReadNumber(false) + " xen.";
+                        else
+                            result = parseInt(strSoTien[0]).FncReadNumber(true) + " đô la Sin và " + parseInt(strSoTien[1]).FncReadNumber(false) + " xen.";
+                    }
+                }
+                if (strSoTien[1].length == 3) {
+                    var chuc = strSoTien[1] / 10;
+                    var le = strSoTien[1] % 10;
+                    result = parseInt(strSoTien[0]).FncReadNumber(true) + " đô la Sin và " + parseInt(chuc).FncReadNumber(false) + " phẩy " + parseInt(le).FncReadNumber(false) + " xen.";
+                } else
+                    console.log("Đọc thành tiền lỗi");
+            } else
+                result = so.FncReadNumber(true) + " đô la Sin.";
+        }
+        if (currency == 'THB') {
+            if (so == 0) return "Không bạt Thái.";
+            var strSoTien = so.toString().split(".");
+            if (strSoTien.length > 1) {
+                if (strSoTien[1].length >= 1) {
+                    if (parseInt(strSoTien[1]) < 10 && strSoTien[1].length == 2)
+                        result = parseInt(strSoTien[0]).FncReadNumber(true) + " chấm không " + parseInt(strSoTien[1]).FncReadNumber(false) + " bạt Thái.";
+                    else {
+                        var sole = strSoTien[1].length == 1 ? parseInt(strSoTien[1]) * 10 : parseInt(strSoTien[1]);
+                        result = parseInt(strSoTien[0]).FncReadNumber(true) + " chấm " + sole.FncReadNumber(false) + " bạt Thái.";
+                    }
+
+                } else
+                    console.log("Đọc thành tiền lỗi");
+            } else
+                result = so.FncReadNumber(true) + " bạt Thái.";
+        }
+        if (currency == 'TWB') {
+            if (so == 0) return "Không tệ.";
+            var strSoTien = so.toString().split(".");
+            if (strSoTien.length > 1) {
+                if (strSoTien[1].length >= 1) {
+                    if (parseInt(strSoTien[1]) < 10 && strSoTien[1].length == 2)
+                        result = parseInt(strSoTien[0]).FncReadNumber(true) + " chấm không " + parseInt(strSoTien[1]).FncReadNumber(false) + " tệ.";
+                    else {
+                        var sole = strSoTien[1].length == 1 ? parseInt(strSoTien[1]) * 10 : parseInt(strSoTien[1]);
+                        result = parseInt(strSoTien[0]).FncReadNumber(true) + " chấm " + sole.FncReadNumber(false) + " tệ.";
+                    }
+
+                } else
+                    console.log("Đọc thành tiền lỗi");
+            } else
+                result = so.FncReadNumber(true) + " tệ.";
+        }
+        if (currency == 'USD') {
+            if (so == 0) return "Không đô la Mỹ.";
+            var strSoTien = so.toString().split(".");
+            if (strSoTien.length > 1) {
+                if (strSoTien[1].length == 2 || strSoTien[1].length == 1) {
+                    if (strSoTien[1].length == 1) {
+                        strSoTien[1] = strSoTien[1].length == 1 ? strSoTien[1] * 10 : strSoTien[1];
+                        result = parseInt(strSoTien[0]).FncReadNumber(true) + " đô la Mỹ và " + parseInt(strSoTien[1]).FncReadNumber(false) + " cents.";
+                    }
+                    if (strSoTien[1].length == 2) {
+                        if (parseInt(strSoTien[1]) < 10)
+                            result = parseInt(strSoTien[0]).FncReadNumber(true) + " đô la Mỹ và lẻ " + parseInt(strSoTien[1]).FncReadNumber(false) + " cents.";
+                        else
+                            result = parseInt(strSoTien[0]).FncReadNumber(true) + " đô la Mỹ và " + parseInt(strSoTien[1]).FncReadNumber(false) + " cents.";
+                    }
+                }
+                if (strSoTien[1].length == 3) {
+                    var chuc = strSoTien[1] / 10;
+                    var le = strSoTien[1] % 10;
+                    result = parseInt(strSoTien[0]).FncReadNumber(true) + " đô la Mỹ và " + parseInt(chuc).FncReadNumber(false) + " phẩy " + parseInt(le).FncReadNumber(false) + " cents.";
+                } else
+                    console.log("Đọc thành tiền lỗi");
+            } else
+                result = so.FncReadNumber(true) + " đô la Mỹ.";
+        }
+        return result;
+    };
+
+    Number.prototype.FncReadNumber = function (isUpper) {
+        var so = this.valueOf();
+        var lan = 0;
+        var i = 0;
+        var KetQua = "";
+        var tmp = "";
+        var ViTri = new Array();
+
+        ViTri[5] = Math.floor(so / 1000000000000000);
+        if (isNaN(ViTri[5]))
+            ViTri[5] = "0";
+        so = so - parseFloat(ViTri[5].toString()) * 1000000000000000;
+        ViTri[4] = Math.floor(so / 1000000000000);
+        if (isNaN(ViTri[4]))
+            ViTri[4] = "0";
+        so = so - parseFloat(ViTri[4].toString()) * 1000000000000;
+        ViTri[3] = Math.floor(so / 1000000000);
+        if (isNaN(ViTri[3]))
+            ViTri[3] = "0";
+        so = so - parseFloat(ViTri[3].toString()) * 1000000000;
+        ViTri[2] = parseInt(so / 1000000);
+        if (isNaN(ViTri[2]))
+            ViTri[2] = "0";
+        ViTri[1] = parseInt((so % 1000000) / 1000);
+        if (isNaN(ViTri[1]))
+            ViTri[1] = "0";
+        ViTri[0] = parseInt(so % 1000);
+        if (isNaN(ViTri[0]))
+            ViTri[0] = "0";
+        if (ViTri[5] > 0) {
+            lan = 5;
+        } else if (ViTri[4] > 0) {
+            lan = 4;
+        } else if (ViTri[3] > 0) {
+            lan = 3;
+        } else if (ViTri[2] > 0) {
+            lan = 2;
+        } else if (ViTri[1] > 0) {
+            lan = 1;
+        } else {
+            lan = 0;
+        }
+        for (i = lan; i >= 0; i--) {
+            var ismax = i == lan ? true : false;
+            tmp = DocSo3ChuSo(ViTri[i], ismax);
+            KetQua += tmp;
+            if (ViTri[i] > 0) KetQua += Tien[i];
+        }
+        KetQua = (isUpper == true ? KetQua.substring(1, 2).toUpperCase() : KetQua.substring(1, 2)) + KetQua.substring(2);
+        return KetQua;
+    }
+
+
+</script>
+<script src="https://kit.fontawesome.com/1cb4e6dc98.js" crossorigin="anonymous"></script>
+</body>
+</html>

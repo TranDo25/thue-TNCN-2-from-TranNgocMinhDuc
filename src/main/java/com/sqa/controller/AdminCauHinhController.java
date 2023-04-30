@@ -1,38 +1,26 @@
 package com.sqa.controller;
 
-import java.util.ArrayList;
-import java.util.Optional;
-
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sqa.models.entities.Bieuthueluytientungphan;
+import com.sqa.models.entities.Bieuthuetoanphan;
+import com.sqa.services.BieuThueLuyTienTungPhanService;
+import com.sqa.services.BieuThueToanPhanService;
+import com.sqa.services.CauHinhService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sqa.models.entities.Bieuthueluytientungphan;
-import com.sqa.models.entities.Bieuthuetoanphan;
-import com.sqa.models.entities.Cauhinh;
-import com.sqa.services.BieuThueLuyTienTungPhanService;
-import com.sqa.services.BieuThueToanPhanService;
-import com.sqa.services.CauHinhService;
-
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin")
-public class CauHinhController {
+public class AdminCauHinhController {
 	@Autowired
 	private BieuThueLuyTienTungPhanService btltService;
 	@Autowired
@@ -45,14 +33,14 @@ public class CauHinhController {
 		ArrayList<Bieuthueluytientungphan> tmp = btltService.get();
 		model.addAttribute("bangThueLuyTien", tmp);
 
-		return "./CauHinh/bieuThueLuyTien";
+		return "./CauHinh/bieu_thue_luy_tien_home";
 	}
 
 	@GetMapping("/BieuThueToanPhan")
 	public String BieuThueToanPhan(Model model) {
 		ArrayList<Bieuthuetoanphan> tmp = _bttpService.get();
 		model.addAttribute("bieuThueToanPhan", tmp);
-		return "./CauHinh/bieuThueToanPhan";
+		return "./CauHinh/bieu_thue_toan_phan_home";
 	}
 //================
 //	@GetMapping("/api/BieuThueLuyTienTungPhan")
@@ -119,7 +107,7 @@ public class CauHinhController {
 //	}
 
 	@PostMapping("/apiThemMucThueLuyTien")
-	public ResponseEntity<Boolean> ThemMucThue(@CookieValue(value = "adminId", defaultValue = "-1") String adminIdtmp,
+	public ResponseEntity<Boolean> ThemMucThueLuyTien(@CookieValue(value = "adminId", defaultValue = "-1") String adminIdtmp,
 			@RequestBody Bieuthueluytientungphan btlt, HttpServletRequest request, Model model) {
 		Bieuthueluytientungphan res = btltService.themMucThueLuyTien(adminIdtmp, btlt);
 		if (res != null) {
@@ -161,7 +149,7 @@ public class CauHinhController {
 	}
 
 	@PostMapping("/apiUpdateMucThueToanPhan")
-	public ResponseEntity<Boolean> UpdateMucThueToanPhan(
+		public ResponseEntity<Boolean> UpdateMucThueToanPhan(
 			@CookieValue(value = "adminId", defaultValue = "-1") String adminIdtmp, @RequestBody Bieuthuetoanphan bttp,
 			HttpServletRequest request, Model model) {
 		int adminId = Integer.parseInt(adminIdtmp);

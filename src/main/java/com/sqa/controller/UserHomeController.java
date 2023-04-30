@@ -10,7 +10,7 @@ import com.sqa.models.entities.Nguoinopthue;
 import com.sqa.services.UserService;
 
 @Controller
-public class HomeController {
+public class UserHomeController {
 	@Autowired
 	private UserService userService;
 
