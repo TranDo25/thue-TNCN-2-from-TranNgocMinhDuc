@@ -9,30 +9,43 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sqa.models.entities.Nguoinopthue;
 import com.sqa.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 
 @Service
 public class UserService {
 
-	@Autowired 
+	@Autowired
 	private UserRepository repository;
 	@Autowired
 	private ModelMapper mapper;
-	
+	@Configuration
+	public class MappingConfiguration {
+		@Bean
+		public ModelMapper modelMapper() {
+			return new ModelMapper();
+		}
+	}
+	public UserService(UserRepository repository, @Qualifier("modelMapper") ModelMapper mapper) {
+		this.repository = repository;
+		this.mapper = mapper;
+	}
+
 	public List<Nguoinopthue> listAllUser() {
 		return repository.findAll();
 	}
-	
+
 	public void save(Nguoinopthue user) {
 		repository.save(user);
 	}
-	
+
 	public Nguoinopthue get(String id) {
 		return repository.findById(id).get();
 	}
-	
+
 	public void delete(String id) {
 		repository.deleteById(id);
 	}

@@ -50,6 +50,10 @@ public class Nguoinopthue {
 
 
     public Nguoinopthue(String id1, String username1, String password1, String tencanhan1) {
+        this.id = id1;
+        this.username = username1;
+        this.password = password1;
+        this.tencanhan = tencanhan1;
     }
 
     public Nguoinopthue() {
