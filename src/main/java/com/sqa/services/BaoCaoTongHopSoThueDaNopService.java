@@ -29,6 +29,15 @@ public class BaoCaoTongHopSoThueDaNopService {
 	private ChiCucThueService cctService;
 	@Autowired
 	private NganHangHoTroThanhToanService nhService;
+
+	public BaoCaoTongHopSoThueDaNopService(UserService userService, HoaDonDongThueService hddtService, TaiKhoanThanhToanService tkttService, ChiCucThueService cctService, NganHangHoTroThanhToanService nhService) {
+		this.userService = userService;
+		this.hddtService = hddtService;
+		this.tkttService = tkttService;
+		this.cctService = cctService;
+		this.nhService = nhService;
+	}
+
 	public BaoCaoTongHopSoThueDaNopModel createBaoCaoTongHop(String userId, LocalDate startDate, LocalDate endDate) {
 		Nguoinopthue user = userService.get(userId);
 		NguoinopthueDTO user2 = userService.convertToDto(user);

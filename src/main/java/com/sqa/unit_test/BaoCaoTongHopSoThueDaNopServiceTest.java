@@ -3,6 +3,7 @@ package com.sqa.unit_test;
 import com.sqa.models.dtos.*;
 import com.sqa.models.entities.*;
 import com.sqa.services.*;
+import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -17,127 +18,158 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.when;
+
 @RunWith(MockitoJUnitRunner.class)
 public class BaoCaoTongHopSoThueDaNopServiceTest {
-
-    @InjectMocks
-    private BaoCaoTongHopSoThueDaNopService baoCaoService;
-
     @Mock
     private UserService userService;
-
     @Mock
-    private HoaDonDongThueService hoaDonService;
-
+    private HoaDonDongThueService hddtService;
     @Mock
-    private TaiKhoanThanhToanService taiKhoanService;
-
+    private TaiKhoanThanhToanService tkttService;
     @Mock
-    private ChiCucThueService chiCucService;
-
+    private ChiCucThueService cctService;
     @Mock
-    private NganHangHoTroThanhToanService nganHangService;
+    private NganHangHoTroThanhToanService nhService;
+
+    private BaoCaoTongHopSoThueDaNopService baoCaoService;
+
+    @Before
+    public void setUp() {
+        baoCaoService = new BaoCaoTongHopSoThueDaNopService(userService, hddtService, tkttService, cctService, nhService);
+    }
 
     @Test
-    public void createBaoCaoTongHop_WithValidInput_ReturnsExpectedResult() {
+    public void createBaoCaoTongHop_ReturnsCorrectModel() {
         // Arrange
-        String userId = "123";
+        String userId = "1";
         LocalDate startDate = LocalDate.of(2022, 1, 1);
         LocalDate endDate = LocalDate.of(2022, 12, 31);
 
         Nguoinopthue user = new Nguoinopthue();
         user.setId(userId);
-        Mockito.when(userService.get(userId)).thenReturn(user);
+        user.setUsername("user1");
+        user.setPassword("pass1");
 
-        List<Hoadondongthue> hoaDons = Arrays.asList(
-                new Hoadondongthue(),
-                new Hoadondongthue(),
-                new Hoadondongthue()
-        );
-        Mockito.when(hoaDonService.getByUserId(userId, startDate, endDate)).thenReturn(hoaDons);
+        Hoadondongthue hddt = new Hoadondongthue();
+        hddt.setId("1");
+        hddt.setId_taikhoanthanhtoan("1");
 
-        BaoCaoTongHopSoThueDaNopModel expected = new BaoCaoTongHopSoThueDaNopModel(new NguoinopthueDTO(user), new ArrayList<>());
-        for (Hoadondongthue hoaDon : hoaDons) {
-            expected.getDsHoaDon().add(new HoadondongthueDTO(hoaDon));
-        }
+        Taikhoanthanhtoan tktt = new Taikhoanthanhtoan();
+        tktt.setId("1");
+        tktt.setNganhanghotrothanhtoanId("1");
+
+        Nganhanghotrothanhtoan nhhttt = new Nganhanghotrothanhtoan();
+        nhhttt.setId("1");
+        nhhttt.setTennganhang("Bank A");
+
+        Chicucthue cct = new Chicucthue();
+        cct.setId_chicucthue("1");
+        cct.setTen("Chi Cuc A");
+
+        ArrayList<Hoadondongthue> dsHoaDon = new ArrayList<>();
+        dsHoaDon.add(hddt);
+
+        when(userService.get(userId)).thenReturn(user);
+        when(hddtService.getByUserId(userId, startDate, endDate)).thenReturn(dsHoaDon);
+        when(hddtService.convertToDto(hddt)).thenReturn(new HoadondongthueDTO());
+        when(tkttService.get(hddt.getId_taikhoanthanhtoan())).thenReturn(Optional.of(tktt));
+        when(nhService.getById(tktt.getNganhanghotrothanhtoanId())).thenReturn(Optional.of(nhhttt));
+        when(cctService.getCCTById(hddt.getId_coquanthue())).thenReturn(Optional.of(cct));
 
         // Act
-        BaoCaoTongHopSoThueDaNopModel actual = baoCaoService.createBaoCaoTongHop(userId, startDate, endDate);
+        BaoCaoTongHopSoThueDaNopModel result = baoCaoService.createBaoCaoTongHop(userId, startDate, endDate);
 
         // Assert
-//        Assert.assertEquals(expected, actual);
-        Assertions.assertEquals(expected, actual);
-
+        assertNotNull(result);
+        assertEquals(user.getId(), result.getNntDTO().getId());
+        assertNotNull(result.getDsHoaDon());
+        assertEquals(1, result.getDsHoaDon().size());
     }
 
     @Test
-    public void createChiTietDongThueModel_WithValidInput_ReturnsExpectedResult() {
+    public void createChiTietDongThueModel_ReturnsCorrectModel() {
         // Arrange
-        String id = "123";
+        String hddtId = "1";
 
-        Hoadondongthue hoaDon = new Hoadondongthue();
-        hoaDon.setId_coquanthue(id);
-        Mockito.when(hoaDonService.getHoaDonById(id)).thenReturn(Optional.of(hoaDon));
+        Hoadondongthue hddt = new Hoadondongthue();
+        hddt.setId(hddtId);
+        hddt.setId_taikhoanthanhtoan("1");
+        hddt.setId_coquanthue("1");
 
-        Taikhoanthanhtoan taiKhoan = new Taikhoanthanhtoan();
-        Mockito.when(taiKhoanService.getTKTTById(hoaDon.getId_taikhoanthanhtoan())).thenReturn(Optional.of(taiKhoan));
+        Taikhoanthanhtoan tktt = new Taikhoanthanhtoan();
+        tktt.setId("1");
+        tktt.setNganhanghotrothanhtoanId("1");
 
-        Nganhanghotrothanhtoan nganHang = new Nganhanghotrothanhtoan();
-        Mockito.when(nganHangService.getById(taiKhoan.getNganhanghotrothanhtoanId())).thenReturn(Optional.of(nganHang));
+        Nganhanghotrothanhtoan nhhttt = new Nganhanghotrothanhtoan();
+        nhhttt.setId("1");
+        nhhttt.setTennganhang("Bank A");
 
-        Chicucthue chiCuc = new Chicucthue();
-        Mockito.when(chiCucService.getCCTById(hoaDon.getId_coquanthue())).thenReturn(Optional.of(chiCuc));
+        Chicucthue cct = new Chicucthue();
+        cct.setId_chicucthue("1");
+        cct.setTen("Chi Cuc A");
 
-        ChiTietDongThueModel expected = new ChiTietDongThueModel();
-        expected.setHoaDonDongThue(new Hoadondongthue(hoaDon));
-        expected.setTaiKhoanThanhToan(taiKhoan);
-        expected.setNganHangHoTroThanhToan(nganHang);
-        expected.setChiCucThue(chiCuc);
-
+        when(hddtService.getHoaDonById(hddtId)).thenReturn(Optional.of(hddt));
+        when(tkttService.getTKTTById(hddt.getId_taikhoanthanhtoan())).thenReturn(Optional.of(tktt));
+        when(nhService.getById(tktt.getNganhanghotrothanhtoanId())).thenReturn(Optional.of(nhhttt));
+        when(cctService.getCCTById(hddt.getId_coquanthue())).thenReturn(Optional.of(cct));
         // Act
-        ChiTietDongThueModel actual = baoCaoService.createChiTietDongThueModel(id);
+        ChiTietDongThueModel result = baoCaoService.createChiTietDongThueModel(hddtId);
 
         // Assert
-//        Assert.assertEquals(expected, actual);
-        Assertions.assertEquals(expected, actual);
+        assertNotNull(result);
+        assertEquals(hddtId, result.getHoaDonDongThue().getId_coquanthue());
+        assertNotNull(result.getTaiKhoanThanhToan());
+        assertNotNull(result.getNganHangHoTroThanhToan());
+        assertNotNull(result.getChiCucThue());
     }
 
     @Test
-    public void getBienLaiDongTien_WithValidInput_ReturnsExpectedResult() {
+    public void getBienLaiDongTien_ReturnsCorrectModel() {
         // Arrange
-        String id = "123";
-        String userId = "456";
+        String hddtId = "1";
+        String userId = "1";
 
-        Nguoinopthue nguoiNopThue = new Nguoinopthue();
-        Mockito.when(userService.get(userId)).thenReturn(nguoiNopThue);
+        Nguoinopthue user = new Nguoinopthue();
+        user.setId(userId);
+        user.setUsername("user1");
+        user.setPassword("pass1");
 
-        Hoadondongthue hoaDon = new Hoadondongthue();
-        hoaDon.setId_coquanthue(id);
-        hoaDon.setId_taikhoanthanhtoan("789");
-        hoaDon.setId_coquanthue("101112");
-        Mockito.when(hoaDonService.getHoaDonById(id)).thenReturn(Optional.of(hoaDon));
+        Hoadondongthue hddt = new Hoadondongthue();
+        hddt.setId(hddtId);
+        hddt.setId_taikhoanthanhtoan("1");
+        hddt.setId_coquanthue("1");
 
-        Taikhoanthanhtoan taiKhoan = new Taikhoanthanhtoan();
-        Mockito.when(taiKhoanService.getTKTTById("789")).thenReturn(Optional.of(taiKhoan));
+        Taikhoanthanhtoan tktt = new Taikhoanthanhtoan();
+        tktt.setId("1");
+        tktt.setNganhanghotrothanhtoanId("1");
 
-        Nganhanghotrothanhtoan nganHang = new Nganhanghotrothanhtoan();
-        Mockito.when(nganHangService.getById(taiKhoan.getNganhanghotrothanhtoanId())).thenReturn(Optional.of(nganHang));
+        Nganhanghotrothanhtoan nhhttt = new Nganhanghotrothanhtoan();
+        nhhttt.setId("1");
+        nhhttt.setTennganhang("Bank A");
 
-        Chicucthue chiCuc = new Chicucthue();
-        Mockito.when(chiCucService.getCCTById("101112")).thenReturn(Optional.of(chiCuc));
+        Chicucthue cct = new Chicucthue();
+        cct.setId_chicucthue("1");
+        cct.setTen("Chi Cuc A");
 
-        BienLaiDongTienModel expected = new BienLaiDongTienModel();
-        expected.setNguoiNopThue(nguoiNopThue);
-        expected.setHoaDonDongThue(new Hoadondongthue(hoaDon));
-        expected.setTaiKhoanThanhToan(taiKhoan);
-        expected.setNganHangHoTroThanhToan(nganHang);
-        expected.setChiCucThue(chiCuc);
+        when(userService.get(userId)).thenReturn(user);
+        when(hddtService.getHoaDonById(hddtId)).thenReturn(Optional.of(hddt));
+        when(tkttService.getTKTTById(hddt.getId_taikhoanthanhtoan())).thenReturn(Optional.of(tktt));
+        when(nhService.getById(tktt.getNganhanghotrothanhtoanId())).thenReturn(Optional.of(nhhttt));
+        when(cctService.getCCTById(hddt.getId_coquanthue())).thenReturn(Optional.of(cct));
 
         // Act
-        BienLaiDongTienModel actual = baoCaoService.getBienLaiDongTien(id, userId);
+        BienLaiDongTienModel result = baoCaoService.getBienLaiDongTien(hddtId, userId);
 
         // Assert
-//        Assert.assertEquals(expected, actual);
-        Assertions.assertEquals(expected, actual);
+        assertNotNull(result);
+        assertEquals(userId, result.getNguoiNopThue().getId());
+        assertEquals(hddtId, result.getHoaDonDongThue().getId_hoadondongthue());
+        assertNotNull(result.getTaiKhoanThanhToan());
+        assertNotNull(result.getNganHangHoTroThanhToan());
+        assertNotNull(result.getChiCucThue());
     }
 }
