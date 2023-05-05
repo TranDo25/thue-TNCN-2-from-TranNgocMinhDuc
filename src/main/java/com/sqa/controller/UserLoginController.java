@@ -5,6 +5,7 @@ import com.sqa.services.UserService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -40,8 +41,8 @@ public class UserLoginController {
 		return "redirect:/";
 	}
 
-	@PostMapping("/processLogin")
-	public String processLogin(Model model,Nguoinopthue user, HttpServletResponse response) {
+	@PostMapping(value = "/processLogin", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE )
+	public String processLogin(Model model,@ModelAttribute Nguoinopthue user, HttpServletResponse response) {
 		boolean res = this.userService.checkLogin(user);
 		if (res == true) {
 			response.addCookie(new Cookie("userId", user.getId() + ""));

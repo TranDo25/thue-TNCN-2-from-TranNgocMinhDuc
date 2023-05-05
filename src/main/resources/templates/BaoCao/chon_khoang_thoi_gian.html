@@ -68,7 +68,7 @@
             alert('bạn chưa chọn ngày kết thúc');
         } else if (new Date($('#startDate').val()).getTime() > currentDate) {
             alert('ngày bắt đầu không hợp lệ');
-        } else if (new Date($('#endDate').val()).getTime() < currentDate) {
+        } else if (new Date($('#endDate').val()).getTime() > currentDate) {
             alert('ngày kết thúc không hợp lệ');
         } else if (startDate <= endDate) {
             $('#form-1').submit();
