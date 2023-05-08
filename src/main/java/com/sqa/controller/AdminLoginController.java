@@ -29,7 +29,7 @@ public class AdminLoginController {
 	}
 
 	@PostMapping("/processLogin")
-	public String processLogin(Model model,  @RequestBody SystemAdmin admin, HttpServletResponse response) {
+	public String processLogin(Model model,  @ModelAttribute SystemAdmin admin, HttpServletResponse response) {
 		SystemAdmin res = this._adminService.checkLogin(admin);
 		if (res != null) {
 			response.addCookie(new Cookie("adminId", res.getId() + ""));
