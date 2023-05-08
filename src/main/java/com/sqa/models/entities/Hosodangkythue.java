@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "hosodangkythue")
 public class Hosodangkythue {
     @Id
-    @Column(name = "idHoSoDangKyThue")
+    @Column(name = "idhosodangkythue")
     private String idHoSoDangKyThue;
 
     @Column(name = "magiaodich")
@@ -27,10 +27,10 @@ public class Hosodangkythue {
     @Column(name = "nguoinopthue_id")
     private String nguoinopthueId;
 
-    @Column(name = "TKDCCNKinhDoanh_idTKDCCNKinhDoanh")
+    @Column(name = "id_tkdccnkinhdoanh")
     private String tkdccnKinhDoanhIdTkdccnKinhDoanh;
 
-    @Column(name = "tongcucthue_idTongCucThue")
+    @Column(name = "id_tongcucthue")
     private String tongcucthueIdTongCucThue;
 
 
